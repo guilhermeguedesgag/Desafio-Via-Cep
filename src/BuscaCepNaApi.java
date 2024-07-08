@@ -27,7 +27,7 @@ public class BuscaCepNaApi {
         System.out.println("Aqui imprimiu o get Cep: " + resultado );
 
 
-        String enderecoApiCorreio = "https://viacep.com.br/ws/" + resultado + "/json/ ";
+        String enderecoApiCorreio = "https://viacep.com.br/ws/" + resultado + "/json/";
 
     // até  aqui fui eu
         try{
@@ -61,8 +61,9 @@ public class BuscaCepNaApi {
             FormatoPadraoCep formatoPadraoCep = gson.fromJson(json,FormatoPadraoCep.class);
             System.out.println(formatoPadraoCep);
 
-
-            FileWriter cepEscrito =  new FileWriter("cep.txt");
+            //cara resposável por escrever os arquivos e gerar os arquivos
+            //com as extensões escolhidas
+            FileWriter cepEscrito =  new FileWriter("cep.xlsx");
             cepEscrito.write(formatoPadraoCep.toString());
             cepEscrito.close();
 
@@ -70,33 +71,19 @@ public class BuscaCepNaApi {
         } catch (NumberFormatException | NullPointerException e) {
             System.out.println("Aconteceu um erro: ");
             System.out.println(e.getMessage());
-        } catch (IllegalArgumentException e) {
-            System.out.println("Algum erro de argumento na busca, verifique o endereço");
-        } catch (IOException e) {
+        }  catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Alguma chamada errada no Json ou no input");
         }
 
-
-
-
-//            FormatoPadraoCep formatoPadraoCep = gson.fromJson(enderecoApiCorreio, FormatoPadraoCep.class);
-//
-//            FormatoPadraoCep formatoPadraoCep = new FormatoPadraoCep();
-//
-//
-//            FileWriter escrita = new FileWriter("filmes.xlsx");
-//            escrita.write(meuTitulo.toString());
-//            escrita.close();
-
-
-
-
+        //algumas impressões importantes
         System.out.println("O programa finalizou corretamente!");
         System.out.println("Endereço gerado da Api: "+ enderecoApiCorreio);
-        System.out.println("String: cep"+ cep);
-        System.out.println("String: resultado " + resultado);
+        System.out.println("CEP encontrado foi: "+ cep);
+
     }
 
 
