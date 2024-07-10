@@ -2,6 +2,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonToken;
 import modelo.cep.FormatoPadraoCep;
 
 import java.io.FileWriter;
@@ -23,8 +24,6 @@ public class BuscaCepNaApi {
     var resultado = cep ;
 
 
-    // teste para ver se extá printando
-        System.out.println("Aqui imprimiu o get Cep: " + resultado );
 
 
         String enderecoApiCorreio = "https://viacep.com.br/ws/" + resultado + "/json/";
@@ -39,7 +38,7 @@ public class BuscaCepNaApi {
                     .send(request, HttpResponse.BodyHandlers.ofString());
 
 
-
+            // esse cara é responsável pela response
             String json = response.body();
             System.out.println(json);
 
@@ -63,8 +62,10 @@ public class BuscaCepNaApi {
 
             //cara resposável por escrever os arquivos e gerar os arquivos
             //com as extensões escolhidas
-            FileWriter cepEscrito =  new FileWriter("cep.xlsx");
-            cepEscrito.write(formatoPadraoCep.toString());
+            FileWriter cepEscrito =  new FileWriter("cep.json");
+//            cepEscrito.write(formatoPadraoCep.toString());// esse cara escreve em String, quebra o json
+
+            gson.toJson(formatoPadraoCep, cepEscrito);
             cepEscrito.close();
 
 
@@ -82,16 +83,17 @@ public class BuscaCepNaApi {
         //algumas impressões importantes
         System.out.println("O programa finalizou corretamente!");
         System.out.println("Endereço gerado da Api: "+ enderecoApiCorreio);
-        System.out.println("CEP encontrado foi: "+ cep);
-
-    }
-
-
 
 
 
 
     }
+
+
+
+
+
+}
 
 
 

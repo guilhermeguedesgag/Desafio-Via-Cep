@@ -15,13 +15,7 @@
 
         }
 
-        public Scanner getCepScanner() {
-            return scanner;
-        }
 
-        public String getCepProcurado() {
-            return cepProcurado;
-        }
 
         public void iniciaisDois() {
             // cara responsável pela entrada de dados
@@ -34,8 +28,8 @@
                 if (cepProcurado.length() > 8) {
                     System.out.println("\nOps...você digitou uma quantidade de caracteres a mais, digite \n" +
                             "novamente apenas 8 dígitos: ");
-                    System.out.println();
-                    System.out.println();
+
+
                 } else if (cepProcurado.length() < 8) {
                     System.out.println("""
                               \nOps...você digitou uma quantidade de caracteres menor

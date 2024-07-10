@@ -5,4 +5,9 @@ public record FormatoPadraoCep(String cep, String logradouro,
                                String localidade, String uf, String ibge,
                                String gia, String ddd, String siafi) {
 
+
+    @Override
+    public String cep() {
+        return cep;
+    }
 }
