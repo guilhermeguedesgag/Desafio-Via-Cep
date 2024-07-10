@@ -17,11 +17,12 @@ public class BuscaCepNaApi {
     public void buscaNaApi(String cep){
         // na String Cep temos o CEP que foi informado
         //na classe anterior
-        System.out.println("Imprimindo o cep:" + cep);
+
 
 
 
     var resultado = cep ;
+
 
 
 
@@ -57,6 +58,14 @@ public class BuscaCepNaApi {
             Gson gson = new GsonBuilder()
                     .setPrettyPrinting().create();
 
+
+
+            //replace para que o cep digitado sai de uma forma pretty
+            String cepFormatado = resultado.replaceFirst("(\\d{5})(\\d{3})","$1-$2");
+
+            //replace acima em uma sequencia de 8 digitos separa em dois grupos pelo hifem(-)
+            System.out.println("Json gerado do CEP: " + cepFormatado);
+
             FormatoPadraoCep formatoPadraoCep = gson.fromJson(json,FormatoPadraoCep.class);
             System.out.println(formatoPadraoCep);
 
@@ -81,8 +90,15 @@ public class BuscaCepNaApi {
         }
 
         //algumas impressões importantes
-        System.out.println("O programa finalizou corretamente!");
-        System.out.println("Endereço gerado da Api: "+ enderecoApiCorreio);
+
+
+
+        System.out.println("Endereço encontrado na API: "+ enderecoApiCorreio);
+
+
+
+
+
 
 
 
