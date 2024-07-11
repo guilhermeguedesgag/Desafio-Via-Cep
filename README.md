@@ -19,7 +19,8 @@ Mais um projeto realizado por Guilherme Guedes:
 
 * Quando digitar caracteres alpha numéricos no Cep, dar uma tratativa.
 
-* Retirar mensagem de "erro na busca, entrada não encontrada qdo Sim"
+
+
 
 
 </details>
@@ -31,5 +32,9 @@ Mais um projeto realizado por Guilherme Guedes:
 
 - Imprimindo o print do erro, quando não encontrava o cep ele imprimia o 
 json com erro(10/07).
+
+- Retirar mensagem de "erro na busca, entrada não encontrada
+    quando Sim"(11/07).
+- Inserido um replace para formatar o cep.
 
 </details>

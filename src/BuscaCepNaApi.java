@@ -2,7 +2,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonToken;
 import modelo.cep.FormatoPadraoCep;
 
 import java.io.FileWriter;
@@ -15,15 +14,12 @@ import java.net.http.HttpResponse;
 public class BuscaCepNaApi {
 
     public void buscaNaApi(String cep){
-        // na String Cep temos o CEP que foi informado
-        //na classe anterior
+        // na String Cep temos o CEP que foi informado na classe anterior
 
-
-//    var resultado = cep ;
 
         String enderecoApiCorreio = "https://viacep.com.br/ws/" + cep + "/json/";
 
-    // até  aqui fui eu
+
         try{
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
@@ -42,54 +38,35 @@ public class BuscaCepNaApi {
                 buscaInicial.iniciaisDois();
             } else {
                 System.out.println(json);
-            }
+                //esse cara Gson abaixo irá buildar o json já validado acima
+                Gson gson = new GsonBuilder()
+                        .setPrettyPrinting().create();
 
+                //replace para que o cep digitado sai de uma forma pretty
+                String cepFormatado = cep.replaceFirst("(\\d{5})(\\d{3})","$1-$2");
 
+                //replace acima em uma sequencia de 8 digitos separa em dois grupos pelo hifem(-)
+                System.out.println("Json gerado do CEP: " + cepFormatado);
 
+                FormatoPadraoCep formatoPadraoCep = gson.fromJson(json,FormatoPadraoCep.class);
+                System.out.println(formatoPadraoCep);
 
+                //cara resposável por escrever os arquivos e gerar os arquivos
+                //com as extensões escolhidas
+                FileWriter cepEscrito =  new FileWriter("cep.json");
+                //            cepEscrito.write(formatoPadraoCep.toString());// esse cara escreve em String, quebra o json
 
-            //primeiro instancie o carinha responsável por buildar o json
-//            JsonObject jsonObject1 = JsonParser.parseString(json).getAsJsonObject();
-
-            //depois coloque uma condição para imprimir, somente se a response for false para pegarmos o erro.
-
-            if (jsonObject.has("erro")&& jsonObject.get("erro").getAsString().equals("true")) {
-                System.out.println("Erro na busca, entrada não encontrada. "+ jsonObject.get("erro").getAsString());
-
-
-
-            } else {
-
-                        //esse cara Gson abaixo irá buildar o json já validado acima
-                        Gson gson = new GsonBuilder()
-                                .setPrettyPrinting().create();
-
-
-
-                        //replace para que o cep digitado sai de uma forma pretty
-                        String cepFormatado = cep.replaceFirst("(\\d{5})(\\d{3})","$1-$2");
-
-                        //replace acima em uma sequencia de 8 digitos separa em dois grupos pelo hifem(-)
-                        System.out.println("Json gerado do CEP: " + cepFormatado);
-
-                        FormatoPadraoCep formatoPadraoCep = gson.fromJson(json,FormatoPadraoCep.class);
-                        System.out.println(formatoPadraoCep);
-
-                        //cara resposável por escrever os arquivos e gerar os arquivos
-                        //com as extensões escolhidas
-                        FileWriter cepEscrito =  new FileWriter("cep.json");
-            //            cepEscrito.write(formatoPadraoCep.toString());// esse cara escreve em String, quebra o json
-
-                        gson.toJson(formatoPadraoCep, cepEscrito);
-                        cepEscrito.close();
+                gson.toJson(formatoPadraoCep, cepEscrito);
+                cepEscrito.close();
 
                 //algumas impressões importantes
 
-
-
                 System.out.println("Endereço encontrado na API: "+ enderecoApiCorreio);
 
-                    }
+
+
+            }
+
 
 
         } catch (NumberFormatException | NullPointerException e) {
