@@ -12,3 +12,24 @@ Mais um projeto realizado por Guilherme Guedes:
 
 
 ![Dev](https://github.com/guilhermeguedesgag/images/blob/710f5a5440452a288e1e5b48cc909525ca73d178/Captura%20de%20tela%20de%202024-03-04%2021-38-07.png)
+
+
+<details> 
+<summary> Verificar        </summary>
+
+* Quando digitar caracteres alpha numéricos no Cep, dar uma tratativa.
+
+* Retirar mensagem de "erro na busca, entrada não encontrada qdo Sim"
+
+
+</details>
+
+<details> 
+<summary> Pontos solucionados</summary>
+
+- Ao digitar CEP que  não existe na API, não encerrar a aplicação.(10/07)
+
+- Imprimindo o print do erro, quando não encontrava o cep ele imprimia o 
+json com erro(10/07).
+
+</details>

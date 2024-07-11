@@ -19,15 +19,9 @@ public class BuscaCepNaApi {
         //na classe anterior
 
 
+//    var resultado = cep ;
 
-
-    var resultado = cep ;
-
-
-
-
-
-        String enderecoApiCorreio = "https://viacep.com.br/ws/" + resultado + "/json/";
+        String enderecoApiCorreio = "https://viacep.com.br/ws/" + cep + "/json/";
 
     // até  aqui fui eu
         try{
@@ -41,66 +35,77 @@ public class BuscaCepNaApi {
 
             // esse cara é responsável pela response
             String json = response.body();
-            System.out.println(json);
+            JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+            if(jsonObject.has("erro")) {
+                System.out.println("CEP não encontrado, digite novamente: ");
+                BuscaInicial buscaInicial = new BuscaInicial();
+                buscaInicial.iniciaisDois();
+            } else {
+                System.out.println(json);
+            }
+
+
+
 
 
             //primeiro instancie o carinha responsável por buildar o json
-            JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+//            JsonObject jsonObject1 = JsonParser.parseString(json).getAsJsonObject();
 
             //depois coloque uma condição para imprimir, somente se a response for false para pegarmos o erro.
-            if (jsonObject.has("Response")&& jsonObject.get("Response").getAsString().equals("False")){
-                System.out.println("Erro na busca, entrada não encontrada. "+ jsonObject.get("Error").getAsString());
 
-
-            }
-
-            //esse cara Gson abaixo irá buildar o json já validado acima
-            Gson gson = new GsonBuilder()
-                    .setPrettyPrinting().create();
+            if (jsonObject.has("erro")&& jsonObject.get("erro").getAsString().equals("true")) {
+                System.out.println("Erro na busca, entrada não encontrada. "+ jsonObject.get("erro").getAsString());
 
 
 
-            //replace para que o cep digitado sai de uma forma pretty
-            String cepFormatado = resultado.replaceFirst("(\\d{5})(\\d{3})","$1-$2");
+            } else {
 
-            //replace acima em uma sequencia de 8 digitos separa em dois grupos pelo hifem(-)
-            System.out.println("Json gerado do CEP: " + cepFormatado);
+                        //esse cara Gson abaixo irá buildar o json já validado acima
+                        Gson gson = new GsonBuilder()
+                                .setPrettyPrinting().create();
 
-            FormatoPadraoCep formatoPadraoCep = gson.fromJson(json,FormatoPadraoCep.class);
-            System.out.println(formatoPadraoCep);
 
-            //cara resposável por escrever os arquivos e gerar os arquivos
-            //com as extensões escolhidas
-            FileWriter cepEscrito =  new FileWriter("cep.json");
-//            cepEscrito.write(formatoPadraoCep.toString());// esse cara escreve em String, quebra o json
 
-            gson.toJson(formatoPadraoCep, cepEscrito);
-            cepEscrito.close();
+                        //replace para que o cep digitado sai de uma forma pretty
+                        String cepFormatado = cep.replaceFirst("(\\d{5})(\\d{3})","$1-$2");
+
+                        //replace acima em uma sequencia de 8 digitos separa em dois grupos pelo hifem(-)
+                        System.out.println("Json gerado do CEP: " + cepFormatado);
+
+                        FormatoPadraoCep formatoPadraoCep = gson.fromJson(json,FormatoPadraoCep.class);
+                        System.out.println(formatoPadraoCep);
+
+                        //cara resposável por escrever os arquivos e gerar os arquivos
+                        //com as extensões escolhidas
+                        FileWriter cepEscrito =  new FileWriter("cep.json");
+            //            cepEscrito.write(formatoPadraoCep.toString());// esse cara escreve em String, quebra o json
+
+                        gson.toJson(formatoPadraoCep, cepEscrito);
+                        cepEscrito.close();
+
+                //algumas impressões importantes
+
+
+
+                System.out.println("Endereço encontrado na API: "+ enderecoApiCorreio);
+
+                    }
 
 
         } catch (NumberFormatException | NullPointerException e) {
-            System.out.println("Aconteceu um erro: ");
-            System.out.println(e.getMessage());
+            BuscaInicial buscaInicial = new BuscaInicial();
+            System.out.println("CEP não encontrado, digite um CEP válido: ");
+            buscaInicial.iniciaisDois();
+
         }  catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } catch (IllegalArgumentException e) {
             System.out.println("Alguma chamada errada no Json ou no input");
+        } catch (IllegalStateException e) {
+            System.out.println("Você digitou caracteres e não números...");
         }
-
-        //algumas impressões importantes
-
-
-
-        System.out.println("Endereço encontrado na API: "+ enderecoApiCorreio);
-
-
-
-
-
-
-
 
 
     }

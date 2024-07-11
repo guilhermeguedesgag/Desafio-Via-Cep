@@ -20,31 +20,29 @@
         public void iniciaisDois() {
             // cara responsável pela entrada de dados
 
-            while (true) {
-                // ao invés de colocar métodos de retornos, inseri
-                //um while para scanner's não ficarem como null
-                cepProcurado = scanner.nextLine();
+//            while (true) {
+//                // ao invés de colocar métodos de retornos, inseri
+//                //um while para scanner's não ficarem como null
+            cepProcurado = scanner.nextLine();
 
-                if (cepProcurado.length() > 8) {
-                    System.out.println("\nOps...você digitou uma quantidade de caracteres a mais, digite \n" +
-                            "novamente apenas 8 dígitos: ");
+            if (cepProcurado.length() > 8) {
+                System.out.println("\nOps...você digitou uma quantidade de caracteres a mais, digite \n" +
+                        "novamente apenas 8 dígitos: ");
+                iniciaisDois();
 
+            } else if (cepProcurado.length() < 8) {
+                System.out.println("""
+                          \nOps...você digitou uma quantidade de caracteres menor
+                          do que a necessária para buscar o CEP, digite novamente
+                          apenas 8 dígitos:
+                        """);
+                iniciaisDois();
 
-                } else if (cepProcurado.length() < 8) {
-                    System.out.println("""
-                              \nOps...você digitou uma quantidade de caracteres menor
-                              do que a necessária para buscar o CEP, digite novamente
-                              apenas 8 dígitos:
-                            """);
-
-                } else {
-                    System.out.println("\nVocê digitou o CEP: " + cepProcurado + ", o CEP está correto? ");
-
-                }
-                break;
-
+            } else {
+                System.out.println("\nVocê digitou o CEP: " + cepProcurado + ", o CEP está correto? ");
 
             }
+
 
 
             do {
@@ -77,13 +75,11 @@
 
         }
 
-
-
-
-
-
-
     }
+
+
+
+
 
 
 
