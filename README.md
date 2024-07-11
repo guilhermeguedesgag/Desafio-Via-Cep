@@ -17,7 +17,10 @@ Mais um projeto realizado por Guilherme Guedes:
 <details> 
 <summary> Verificar        </summary>
 
-* Quando digitar caracteres alpha numéricos no Cep, dar uma tratativa.
+* Arrumar foto projeto deixar diretorio publico
+* Dar um clean no projeto
+
+
 
 
 
@@ -35,6 +38,8 @@ json com erro(10/07).
 
 - Retirar mensagem de "erro na busca, entrada não encontrada
     quando Sim"(11/07).
-- Inserido um replace para formatar o cep.
+- Inserido um replace para formatar o cep.(09/07)
+
+- Quando digitar caracteres alpha numéricos no Cep, dar uma tratativa(11/07).
 
 </details>

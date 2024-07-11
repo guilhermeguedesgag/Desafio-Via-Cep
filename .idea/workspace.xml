@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b4d9952d-8c2c-4a58-9bd6-8cd5c25b7cc8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BuscaCepNaApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BuscaCepNaApi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

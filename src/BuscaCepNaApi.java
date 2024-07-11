@@ -1,7 +1,4 @@
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import modelo.cep.FormatoPadraoCep;
 
 import java.io.FileWriter;
@@ -32,12 +29,16 @@ public class BuscaCepNaApi {
             // esse cara é responsável pela response
             String json = response.body();
             JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+
             if(jsonObject.has("erro")) {
                 System.out.println("CEP não encontrado, digite novamente: ");
                 BuscaInicial buscaInicial = new BuscaInicial();
                 buscaInicial.iniciaisDois();
+
             } else {
+
                 System.out.println(json);
+
                 //esse cara Gson abaixo irá buildar o json já validado acima
                 Gson gson = new GsonBuilder()
                         .setPrettyPrinting().create();
@@ -51,22 +52,17 @@ public class BuscaCepNaApi {
                 FormatoPadraoCep formatoPadraoCep = gson.fromJson(json,FormatoPadraoCep.class);
                 System.out.println(formatoPadraoCep);
 
-                //cara resposável por escrever os arquivos e gerar os arquivos
-                //com as extensões escolhidas
-                FileWriter cepEscrito =  new FileWriter("cep.json");
-                //            cepEscrito.write(formatoPadraoCep.toString());// esse cara escreve em String, quebra o json
 
-                gson.toJson(formatoPadraoCep, cepEscrito);
-                cepEscrito.close();
+
+                //cara resposável por escrever os arquivos e gerar os arquivo com as extensões escolhidas
+                try(FileWriter cepEscrito =  new FileWriter("cep.json")){
+                gson.toJson(formatoPadraoCep, cepEscrito);}
+
 
                 //algumas impressões importantes
-
                 System.out.println("Endereço encontrado na API: "+ enderecoApiCorreio);
 
-
-
             }
-
 
 
         } catch (NumberFormatException | NullPointerException e) {
@@ -74,14 +70,18 @@ public class BuscaCepNaApi {
             System.out.println("CEP não encontrado, digite um CEP válido: ");
             buscaInicial.iniciaisDois();
 
-        }  catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        }  catch (IOException | InterruptedException e) {
+            // Exception lançado pelo send do http
+            System.out.println("Erro ao relizar exceção: "+e.getMessage());
+
         } catch (IllegalArgumentException e) {
-            System.out.println("Alguma chamada errada no Json ou no input");
-        } catch (IllegalStateException e) {
-            System.out.println("Você digitou caracteres e não números...");
+            System.out.println("você digitou caracteres não permitidos..");
+
+        } catch (IllegalStateException | JsonSyntaxException e) {
+            System.out.println("Você digitou caracteres não compatíveis com o CEP, digite novamente: ");
+            BuscaInicial buscaInicial = new BuscaInicial();
+            buscaInicial.iniciaisDois();
+
         }
 
 
