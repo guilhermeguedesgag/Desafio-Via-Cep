@@ -50,15 +50,16 @@
                 System.out.println("\nDigite 'Sim' ou 'Não': ");
                 respostaEscolha = scanner.nextLine();
 
-                if (!respostaEscolha.equalsIgnoreCase("Sim") && (!respostaEscolha.equalsIgnoreCase("Não"))) {
-
-
+                if(!respostaEscolha.equalsIgnoreCase("Sim") && (!respostaEscolha.equalsIgnoreCase("Não"))) {
                     System.out.println("\nOps...não entendi...digite 'Sim' ou 'Não':");
-
                 } else {
                     break;
                 }
+
+
             } while (!respostaEscolha.equalsIgnoreCase("Sim") && (!respostaEscolha.equalsIgnoreCase("Não")));
+
+
 
 
             if (respostaEscolha.equalsIgnoreCase("Sim")) {
@@ -68,14 +69,26 @@
                 //passei como parametro o 'cepProcurado' para ele armazenar
                 buscaCepNaApi.buscaNaApi(cepProcurado);
 
-            } else if (respostaEscolha.equalsIgnoreCase("Não")) {
-                System.out.println("\nDigite o CEP novamente: ");
+            }
+               System.out.println("\nDigite o CEP novamente: ");
                 iniciaisDois();
             }
 
+
+
+
+
+
         }
 
-    }
+
+
+
+
+
+
+
+
 
 
 

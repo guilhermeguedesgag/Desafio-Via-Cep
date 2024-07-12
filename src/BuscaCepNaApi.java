@@ -61,6 +61,7 @@ public class BuscaCepNaApi {
 
                 //algumas impressões importantes
                 System.out.println("Endereço encontrado na API: "+ enderecoApiCorreio);
+                System.exit(0);
 
             }
 
@@ -72,10 +73,10 @@ public class BuscaCepNaApi {
 
         }  catch (IOException | InterruptedException e) {
             // Exception lançado pelo send do http
-            System.out.println("Erro ao relizar exceção: "+e.getMessage());
+            System.out.println("Erro ao realizar exceção: "+e.getMessage());
 
         } catch (IllegalArgumentException e) {
-            System.out.println("você digitou caracteres não permitidos..");
+            System.out.println("Você digitou caracteres não permitidos..");
 
         } catch (IllegalStateException | JsonSyntaxException e) {
             System.out.println("Você digitou caracteres não compatíveis com o CEP, digite novamente: ");
@@ -85,13 +86,16 @@ public class BuscaCepNaApi {
         }
 
 
+
+        }
+
     }
 
 
 
 
 
-}
+
 
 
 

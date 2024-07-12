@@ -42,4 +42,5 @@ json com erro(10/07).
 
 - Quando digitar caracteres alpha numéricos no Cep, dar uma tratativa(11/07).
 
+- Solicitando nova inserçao do cep: S.: Inseri Sys.exit.0
 </details>
