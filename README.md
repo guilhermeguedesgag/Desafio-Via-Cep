@@ -17,8 +17,7 @@ Mais um projeto realizado por Guilherme Guedes:
 <details> 
 <summary> Verificar        </summary>
 
-* Arrumar foto projeto deixar diretorio publico
-* Dar um clean no projeto
+* Tudo certo!
 
 
 
