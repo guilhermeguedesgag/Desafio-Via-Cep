@@ -7,8 +7,6 @@
     <list default="true" id="b4d9952d-8c2c-4a58-9bd6-8cd5c25b7cc8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BuscaCepNaApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BuscaCepNaApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BuscaInicial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BuscaInicial.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,11 +83,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/BuscaCepNaApi.java</url>
-          <line>62</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/BuscaInicial.java</url>
           <line>47</line>

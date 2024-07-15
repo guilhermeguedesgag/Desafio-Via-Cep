@@ -11,7 +11,7 @@
 Mais um projeto realizado por Guilherme Guedes:
 
 
-![Dev](https://github.com/guilhermeguedesgag/images/blob/710f5a5440452a288e1e5b48cc909525ca73d178/Captura%20de%20tela%20de%202024-03-04%2021-38-07.png)
+![Dev](https://github.com/guilhermeguedesgag/images/blob/27e482c0a51a0d322a50a61dedeaaec673fc313c/guiperfil.jpg)
 
 
 <details> 
